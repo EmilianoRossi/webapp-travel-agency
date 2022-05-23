@@ -79,6 +79,91 @@ namespace webapp_travel_agency.Controllers
             }
 
         }
+
+        [HttpGet]
+        public IActionResult Modifica(int id)
+        {
+            Viaggio viaggioDaModificare = null;
+
+            using (ViaggioContext db = new ViaggioContext())
+            {
+                viaggioDaModificare = db.Viaggios
+                     .Where(viaggio => viaggio.Id == id)
+                     .FirstOrDefault();
+
+            }
+
+            if (viaggioDaModificare == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View("Modifica", viaggioDaModificare);
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult Modifica(int id, Viaggio model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Modifica", model);
+            }
+
+            Viaggio viaggioDaModificare = null;
+
+            using (ViaggioContext db = new ViaggioContext())
+            {
+                viaggioDaModificare = db.Viaggios
+                     .Where(viaggio => viaggio.Id == id)
+                     .FirstOrDefault();
+
+
+                if (viaggioDaModificare != null)
+                {
+                    viaggioDaModificare.Nome = model.Nome;
+                    viaggioDaModificare.Descrizione = model.Descrizione;
+                    viaggioDaModificare.Foto = model.Foto;
+                    viaggioDaModificare.Prezzo = model.Prezzo;
+
+                    db.SaveChanges();
+
+                    return RedirectToAction("HomePage");
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+            
+        }
+
+        [HttpPost]
+        public IActionResult Cancella(int id)
+        {
+
+            using (ViaggioContext db = new ViaggioContext())
+            {
+                Viaggio viaggioDaCancellare = db.Viaggios
+                     .Where(viaggio => viaggio.Id == id)
+                     .FirstOrDefault();
+
+                if (viaggioDaCancellare != null)
+                {
+                    db.Viaggios.Remove(viaggioDaCancellare);
+                    db.SaveChanges();
+
+                    return RedirectToAction("HomePage", "Viaggi");
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+        }
     }
 
     
