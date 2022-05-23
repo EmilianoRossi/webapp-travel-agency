@@ -1,0 +1,36 @@
+﻿@model List<Viaggio>
+
+<body>
+
+    <main>
+
+        <div class = "row mt-3 justify-content-center">
+    <div class ="col-4 justify-content-center mb-5">
+    
+        <h2 class="text-center">I nostri viaggi!</h2>
+    
+    </div>
+</div>
+    <div class="row text-center justify-content-center gx-0 mt-5"> 
+    @foreach (Viaggio listViaggio in Model){
+   
+        <div class="col-12 col-sm-3">
+            <div class="card shadow mb-5 bg-body rounded" style="width: 18rem;">
+                <img class="img-fluid" src="@listViaggio.Foto" class="card-img-top" alt="primaFoto">
+            <div class="card-body p-0 pb-0">
+                <h6 class="card-title text-uppercase bg-primary pb-2 pt-2 text-white ">@listViaggio.Nome</h6>
+                <p class="card-text ps-2 pe-2 mb-4 mt-3"><small>@listViaggio.Descrizione</small></p>
+            </div>
+            <ul class="list-group list-group-flush pb-0 mb-2">
+                <a href="@Url.Action("Dettagli" , "Viaggi")" class="btn btn-primary">Visualizza!</a>
+            </ul>    
+                    
+            </div>
+        </div>
+
+    }  
+</div>
+
+    </main>
+
+</body>
