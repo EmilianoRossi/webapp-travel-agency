@@ -25,11 +25,14 @@
                 <a href="@Url.Action("Dettagli", "Viaggi", new { id = listViaggio.Id})" class="btn btn-primary">Visualizza!</a>
             </ul> 
             <ul class="list-group list-group-flush pb-0 mb-2">
-                <a href="@Url.Action("Modifica" , "Viaggi")" class="btn btn-success">Modifica!</a>
+                <a href="@Url.Action("Modifica", "Viaggi", new { id = listViaggio.Id})" class="btn btn-success">Modifica!</a>
             </ul>  
-            <ul class="list-group list-group-flush pb-0 mb-2">
-                <a href="@Url.Action("Cancella" , "Viaggi")" class="btn btn-danger">Cancella!</a>
-            </ul>  
+            <form action="@Url.Action("Cancella", "Viaggi", new {id= listViaggio.Id})" method="post">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-danger btn-sm">
+                    Cancella!
+                </button>
+            </form> 
                     
             </div>
         </div>
