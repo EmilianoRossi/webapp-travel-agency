@@ -37,6 +37,7 @@ namespace webapp_travel_agency.Controllers
             return RedirectToAction("HomePage");
         }
 
+        [HttpGet]
         public IActionResult ListaViaggi()
         {
 
@@ -51,6 +52,35 @@ namespace webapp_travel_agency.Controllers
             return View("ListaViaggi", listaViaggi);
 
         }
+
+        [HttpGet]
+        public IActionResult Dettagli(int id)
+        {
+
+            using (ViaggioContext db = new ViaggioContext())
+            {
+                try { 
+                
+                    Viaggio viaggioTrovato = db.Viaggios
+                         .Where(viaggio => viaggio.Id == id)
+                         .First();
+
+                    return View("Dettagli", viaggioTrovato);
+
+                }
+                catch (InvalidOperationException ex)
+                {
+                    return NotFound("Il pacchetto con id " + id + " non è stato trovato");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest();
+                }
+            }
+
+        }
     }
+
+    
 
 }
