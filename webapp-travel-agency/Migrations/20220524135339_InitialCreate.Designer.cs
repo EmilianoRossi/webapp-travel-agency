@@ -11,7 +11,7 @@ using webapp_travel_agency.Data;
 namespace webapp_travel_agency.Migrations
 {
     [DbContext(typeof(ViaggioContext))]
-    [Migration("20220523094628_InitialCreate")]
+    [Migration("20220524135339_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
