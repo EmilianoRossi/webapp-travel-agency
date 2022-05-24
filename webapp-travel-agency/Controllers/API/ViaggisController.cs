@@ -30,7 +30,39 @@ namespace webapp_travel_agency.Controllers.API
 
             return Ok(viaggis);
         }
-    }
 
+        [HttpGet("{id}")]
+        public IActionResult DettagliUtente(int id)
+        {
+            using (ViaggioContext db = new ViaggioContext())
+            {
+                try
+                {
+
+                    Viaggio viaggioTrovato = db.Viaggios
+                         .Where(viaggio => viaggio.Id == id)
+                         .First();
+
+                    return Ok (viaggioTrovato);
+
+                }
+                catch (InvalidOperationException ex)
+                {
+                    return NotFound("Il pacchetto con id " + id + " non è stato trovato");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest();
+                }
+            }
+        }
+
+
+
+    }
 }
+
+        
+   
+
 

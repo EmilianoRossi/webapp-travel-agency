@@ -1,5 +1,4 @@
-﻿
-<body style="position:relative; height: 100%; background: black url('https://images.hdqwalls.com/download/travel-hd-1280x800.jpg') no-repeat ; background-size:cover; box-shadow:inset 0 -1px 5px rgba(0,0,0,0.6);">
+﻿<body style="position:relative; height: 100%; background: black url('https://images.hdqwalls.com/download/travel-hd-1280x800.jpg') no-repeat ; background-size:cover; box-shadow:inset 0 -1px 5px rgba(0,0,0,0.6);">
 
     <main>
 
@@ -16,7 +15,6 @@
                 <p>Ricerca per titolo/descrizione</p>
                 <input id="search_input" type="text" placeholder="Cerca per titolo...">
 
-       
     </div>
 
     <div class="row">
@@ -30,9 +28,7 @@
 
     </div>
     <div id="viaggio-wait" class="row js_wait_viaggio text-center">
-        <div class="col-12">
-            <h3>Sto aspettando i viaggi ...</h3>
-        </div>
+        
     </div>
     <div id="no-viaggio-div" class="row js_no_viaggio text-center d-none">
         <div class="col-12">
@@ -91,7 +87,9 @@
                                 <ul class="list-group list-group-flush pb-0 mb-2">
                                     <li class="list-group-item text-danger"><small>Prezzo:</small><br><span class="text-black fw-bold"><small>${viaggios.prezzo}€</small></span><span class="text-secondary"></span></li> 
                                 </ul> 
+                                <a href="https://localhost:7054/Home/DettagliUtente/${viaggios.id}">Dettagli!</a>
                             </div>
+                                
                             </div>
 
                             </div>
@@ -106,7 +104,8 @@
                 console.log("C'è stato un errore: " + error);
             });
         }
-    
+
+        
     </script>
 
     

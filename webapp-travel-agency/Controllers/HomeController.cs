@@ -10,5 +10,10 @@ namespace webapp_travel_agency.Controllers
         {
             return View("Index");
         }
+
+        public IActionResult DettagliUtente()
+        {
+            return View("DettagliUtente");
+        }
     }
 }
