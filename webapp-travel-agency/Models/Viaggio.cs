@@ -18,6 +18,7 @@ namespace webapp_travel_agency.Models
         [Required(ErrorMessage = " Il link della foto è obbligatorio")]
         [Url(ErrorMessage = "Devi inserire un Url")]
         public string Foto { get; set; }
+        public List<Informazione> Informazioni { get; set; }
         public Viaggio()
         {
 
@@ -27,7 +28,7 @@ namespace webapp_travel_agency.Models
 
         public Viaggio(string nome, double prezzo, string descrizione, string foto)
         {
-
+            
             this.Nome = nome;
             this.Prezzo = prezzo;
             this.Descrizione = descrizione;

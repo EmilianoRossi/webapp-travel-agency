@@ -7,6 +7,7 @@ namespace webapp_travel_agency.Data
     {
 
         public DbSet<Viaggio> Viaggios { get; set; }
+        public DbSet<Informazione> Informaziones { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {

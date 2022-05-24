@@ -57,8 +57,6 @@ namespace webapp_travel_agency.Controllers.API
             }
         }
 
-
-
     }
 }
 

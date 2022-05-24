@@ -1,7 +1,9 @@
-﻿<body style="position:relative; height: 100%; background: black url('https://images.hdqwalls.com/download/travel-hd-1280x800.jpg') no-repeat ; background-size:cover; box-shadow:inset 0 -1px 5px rgba(0,0,0,0.6);">
+﻿@model Viaggio
+
+<body style="position:relative; height: 100%; background: black url('https://images.hdqwalls.com/download/travel-hd-1280x800.jpg') no-repeat ; background-size:cover; box-shadow:inset 0 -1px 5px rgba(0,0,0,0.6);">
 
     <main>
-
+    
     <div class="container">
         <div class="row align-items-center">
        
@@ -15,7 +17,6 @@
                 <p>Ricerca per titolo/descrizione</p>
                 <input id="search_input" type="text" placeholder="Cerca per titolo...">
 
-    </div>
 
     <div class="row">
 
@@ -23,6 +24,7 @@
 
             <div>
                 
+
             </div>
         </div>
 
@@ -40,7 +42,57 @@
     <div id="viaggio-div" class="row js_viaggio_cards">
         <!-- qui verranno mostrati gli elementi -->
     </div>
-</div>
+        <div class="row">
+            <div class="col-6">
+                <div class = "row mt-3 justify-content-center">
+                    <div class ="col-4 justify-content-center mb-5">
+                        
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <h1>Inserisci un nuovo pacchetto!</h1>
+                    
+                </div>
+                <div class="d-flex align-items-center">
+                              
+                    <h2>Compila il Form</h2>
+                </div>
+                <form onsubmit="richiestaInformazione(event)" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="col-3 mb-3">
+                        <h5>Nome:</h5>
+                        <input type="text" class="d-block w-100 text-black" id="nome"  />
+                        
+                    </div>
+                    <div class="col-3 mb-5">
+                        <h5>Cognome:</h5>
+                        <input type="text" class="d-block w-100 text-black" id="cognome"  />
+                        
+                    </div>
+                    <div class="col-3 mb-3">
+                        <h5>Email:</h5>
+                        <input type="text" class="d-block w-100 text-black" id="email" placeholder="pinco@gmail.com"  />
+                       
+                    </div>
+                    <div class="col-3 mb-3">
+                        <h5>Telefono:</h5>
+                        <input type="text" class="d-block w-100 text-black" id="telefono" placeholder="3xxxxxxxxx"  />
+                       
+                    </div>
+                    <div class="col-3 mb-3">
+                        <h5>Descrizione:</h5>
+                        <textarea type="text" rows="10" class="d-block w-100" id="testo"></textarea>
+                       
+                    </div>
+                    <div class="text-start">
+                        <input type="submit" class="btn btn-small btn-primary" value="Salva">
+                    </div>
+                
+
+                </form>
+            </div>
+        </div>
+    </div>
 
 @section Scripts {
 
@@ -84,15 +136,45 @@
 
             ).catch((error) => {
                 console.log("C'è stato un errore: " + error);
-            });
+            })
         }
+        
+        function richiestaInformazione(event) {
+            var url = window.location.pathname;
+            var idUtente = url.substring(url.lastIndexOf('/') + 1);
+            parseInt(id);
+            event.preventDefault();
+            
+            
+            var nome = document.getElementById('nome').value;
+            var cognome = document.getElementById('cognome').value;
+            var email = document.getElementById('email').value;
+            var testo = document.getElementById('testo').value;
+            var informazioni = document.getElementById('testo').value;
+            var id = 
+            var nuovaRichiesta = {
+                Nome: nome,
+                Cognome: cognome,
+                Email: email,
+                Testo: informazioni,
+                ViaggioId : idUtente
+            }
+            
+            axios.post('/api/Informazioni/Post', nuovaRichiesta).then((result) => {
+                console.log("Ho aggiunto la nuova richiesta");
+                
+                
+                
+            }).catch((error) => {
+                console.log("Si è verificato un errore: " + error);
+            })
+        }
+        
 
         
     </script>
 
-    
-
 }
-
+    
     </main>
 </body>
